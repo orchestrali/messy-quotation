@@ -28,6 +28,7 @@ Some things I might get around to adding:
 - option to adjust the speed of the ropes (maaaayybe)
 - verbal instructions ("go next time" and the like)
 - winking at another ringer (maybe just course and after bells?)
+- collect striking data and see if I can do things to help with lag
 
 Known issue:
 - These animations only display correctly once on iOS 12.4.8. They seem to be fine on iOS 13. I'm not sure there's a way to fix this short of completely changing how the animations are done.
