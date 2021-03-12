@@ -43,6 +43,19 @@ button:hover {
   cursor: pointer;
 }
 
+button#stand {
+  font-size: 14px;
+  padding: 12px;
+}
+
+.hidden {
+  display: none;
+}
+
+.conduct {
+  display: none;
+}
+
 div#closed {
   display: none;
 }
@@ -131,6 +144,10 @@ ul#numbells li:nth-child(2) {
   margin: 5px;
 }
 
+input#speed {
+  width: 40px;
+}
+
 input#chat {
   width: 250px;
 }
@@ -145,7 +162,7 @@ div#display {
   margin: 20px 0;
 }
 div.bellnum {
-  width: 150px;
+  width: 100px;
   padding-left: 27px;
 }
 
