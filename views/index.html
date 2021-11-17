@@ -19,7 +19,7 @@
   <body>
     <div id="closed">
       <h3>
-        Connection error - try reloading to re-enter.
+        Connection error - attempting to reconnect...
       </h3>
     </div>
     
@@ -27,13 +27,18 @@
       <h3>
         Messy quotation chamber
       </h3>
-      <label for="name" class="enter">Enter a display name to join the ringing chamber:</label>
+      <label for="name" class="enter">Enter a display name for yourself:</label>
       <input id="name" type="text" class="block"/>
       <label for="secret" class="enter">Enter the secret word:</label>
-      <input id="secret" type="text" autocomplete="off" class="block"/>
+      <input id="secret" type="text" autocomplete="off" class="block" autocapitalize="off" />
       <button type="button" id="enterbutton">
         Enter the chamber
       </button>
+      <div id="wait" class="hidden">
+        <img  alt="loading" src="https://cdn.glitch.com/73aed9e9-7ed2-40e5-93da-eb7538e8d42c%2Floading.gif?v=1618520638359" />
+        Loading...
+      </div>
+      
     </div>
     
     <div id="phoneinfo" class="hidden">
@@ -54,8 +59,11 @@
           
         </ul>
         <h4>
-          Stage
+          Room controls
         </h4>
+        <h5>
+          Stage
+        </h5>
         <ul id="numbells">
           <li id="minimus">4</li>
           <li id="minor">6</li>
@@ -66,32 +74,122 @@
         <button type="button" id="stand">
           Set all at hand
         </button>
+        <div class="conduct" >
+          <label for="duration">Stroke duration in seconds: </label>
+          <input id="duration" type="number" value="1.3" step="0.1" />
+        </div>
+        <div id="simulator" class="hidden">
+          <h5>
+            Simulator options
+          </h5>
+          <ul id="conduct">
+            <li id="start">Start</li>
+            <li id="reset" class="disabled">Reset</li>
+            <li id="fillin">Fill in</li>
+          </ul>
+          <!--<div class="conduct" >
+            <label for="speed">Row duration in seconds: </label>
+            <input id="speed" type="number" value="2.0" step="0.1">
+          </div>-->
+          <ul>
+            <li>
+              Pealspeed: 
+              <input type="number" min="1" step="1" name="hours" id="hours" value="3"/><label for="hours">hours</label>
+              <input type="number" min="0" max="59" step="1" name="minutes" id="minutes" value="0"/><label for="minutes">minutes</label>
+            </li>
+            <li>
+              <label for="roundsrows">Rows of rounds to start: </label>
+              <input type="number" min="2" step="1" name="roundsrows" id="roundsrows" value="2" />
+            </li>
+            <li>
+              <input type="checkbox" name="stopatrounds" id="stopatrounds" /><label for="nthrounds">Stop at the <input type="number" name="nthrounds" id="nthrounds" min="1" step="1" value="1" />th occurence of rounds</label>
+            </li>
+            <li>
+              <input type="checkbox" name="waitforgaps" id="waitforgaps" checked /><label for="waitforgaps">Wait for human ringers</label>
+            </li>
+          </ul>
+          
+          
+          
+        </div>
+        <div id="composition" >
+          <h5>
+            Choose a method or composition
+          </h5>
+          <div id="method">
+            <ul>
+              <li><label for="methodname" >Search for a method:</label></li>
+              <li><input type="text" id="methodname" placeholder="Enter a complete method title" autocapitalize="words" /></li>
+              <li>
+                <label for="placenot">Or, select a stage and enter place notation: </label>
+                <select id="stage">
+                  <option value disabled selected></option>
+                  <option value="minimus">4</option>
+                  <option value="doubles">5</option>
+                  <option value="minor">6</option>
+                  <option value="triples">7</option>
+                  <option value="major">8</option>
+                  <option value="caters">9</option>
+                  <option value="royal">10</option>
+                  <option value="cinques">11</option>
+                  <option value="maximus">12</option>
+                </select>
+                <input type="text" id="placenot" autocapitalize="off" />
+                
+              </li>
+              
+              <li>
+                <label for="complib">Or, enter a complib.org composition id:</label>
+                <input type="text" id="complib" />
+              </li>
+            </ul>
+            <p>
+
+            </p>
+          </div>
+        </div>
+        
         <h4>
-          Sound
+          Personal controls
         </h4>
-        <input type="range" id="volume" min="0" max="2" value="1" step="0.01" />
+        <h5>
+          Sound
+        </h5>
+        <label for="volume">Volume</label>
+        <input type="range" id="volume" min="0" max="2" value="1" step="0.01" class="block"/>
         <ul id="sounds">
           <li><input type="radio" name="sounds" value="tower" checked />Vancouver tower</li>
           <li><input type="radio" name="sounds" value="mabel" />Mabel tower</li>
         </ul>
-        <h4>
+        <h5>
           View
-        </h4>
-        <ul id="trebleloc">
-          <li id="trebler"><input type="radio" name="trebleloc" value="right" checked />treble on right</li>
-          <li id="treblel"><input type="radio" name="trebleloc" value="left" />treble on left</li>
-          <li id="centerself"><input type="checkbox" name="centerself" />center my rope</li>
+        </h5>
+        <ul id="view">
+          <li id="circle"><input type="radio" name="view" value="circle" checked />Circle of ropes</li>
+          <li id="line"><input type="radio" name="view" value="line" />Line of ropes</li>
         </ul>
-        <label for="spacing">Rope spacing: </label><select id="spacing" name="spacing">
-          <option value="60">close</option>
-          <option value="100" selected>medium</option>
-          <option value="150">wide</option>
-        </select>
-
-        <div class="conduct" >
-          <label for="speed">Stroke duration in seconds: </label>
-          <input id="speed" type="number" value="1.3" step="0.1" />
+        <div id="lineview" class="hidden">
+          <ul id="trebleloc">
+            <li id="trebler"><input type="radio" name="trebleloc" value="right" checked />treble on right</li>
+            <li id="treblel"><input type="radio" name="trebleloc" value="left" />treble on left</li>
+            <li id="centerself"><input type="checkbox" name="centerself" />center my rope</li>
+          </ul>
+          <label for="spacing">Rope spacing: </label><select id="spacing" name="spacing">
+            <option value="60">close</option>
+            <option value="100" selected>medium</option>
+            <option value="150">wide</option>
+          </select>
         </div>
+        <ul>
+          <li><input type="checkbox" name="solidme" id="solidme" />Give my rope(s) a solid-color sally</li>
+          <li><input type="checkbox" name="solidtreble" id="solidtreble" />Give the treble a solid-color sally</li>
+          <li class="hidden following"><input type="checkbox" name="highlightunder" id="highlightunder" />Highlight the rope I should follow (lead when my rope is highlighted)</li>
+          <li class="hidden following"><input type="checkbox" name="fadeabove" id="fadeabove" />Fade the ropes above me</li>
+          <li class="hidden displayplace"><input type="checkbox" name="displayplace" id="displayplace" />Display the place I should be in</li>
+          <li class="hidden following"><input type="checkbox" name="instructions" id="instructions" />Display method instructions</li>
+        </ul>
+
+        
 
 
         
@@ -117,21 +215,53 @@
         <div id="display">
           
         </div>
-        <div id="bells">
+        <div id="display3">
           
+        </div>
+        <div id="bells">
+          <div id="callcontainer">
+            
+          </div>
           
         </div>
         <button type="button" id="resume">
           Click here to resume ringing
         </button>
+        <div id="display2">
+          <div id="roomzoom">
+            <ul>
+              <li>
+                <label for="left-right">Left-right</label>
+                <input type="range" id="left-right" min="0" max="600" step="5" value="180"/>
+              </li>
+              <li>
+                <label for="up-down">Up-down</label>
+                <input type="range" id="up-down" min="0" max="500" step="5" value="250"/>
+              </li>
+              <li>
+                <label for="zoom">Zoom</label>
+                <input type="range" id="zoom" min="0" max="200" step="5" value="0"/>
+              </li>
+              <li>
+                <label for="depth">Depth</label>
+                <input type="range" id="depth" min="50" max="1100" step="5" />
+              </li>
+            </ul>
+            
+          </div>
+        </div>
         
       </div>
     </div>
 
     
 
-    <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
+    <script src="https://cdn.socket.io/4.1.1/socket.io.min.js" integrity="sha384-cdrFIqe3RasCMNE0jeFG9xJHog/tgOVC1E9Lzve8LQN1g5WUHo0Kvk1mawWjxX7a" crossorigin="anonymous"></script>
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="jquery.svg.js"></script>
+    
+    <script src="jquery.svgdom.js"></script>
     <script src="sense.js"></script>
     <script src="script.js"></script>
   </body>
