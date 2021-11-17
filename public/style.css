@@ -56,6 +56,15 @@ button#stand {
   display: none;
 }
 
+.disabled {
+  border: 1px solid gray;
+  color: lightgray;
+}
+
+input[type="number"] {
+  width: 40px;
+}
+
 div#closed {
   display: none;
 }
@@ -66,6 +75,10 @@ div#container {
 }
 div.column {
   margin: 5px;
+}
+
+div.column:first-child {
+  max-width: 300px;
 }
 
 label.enter, input#name {
@@ -128,6 +141,20 @@ ul#numbells li:nth-child(2) {
   background-color: black;
 }
 
+ul#conduct li {
+  display: inline-block;
+  padding: 4px;
+  margin: 7px;
+  border: 1px solid black;
+}
+ul#conduct li:hover {
+  cursor: pointer;
+}
+
+#methodname {
+  width: -webkit-fill-available;
+}
+
 #keyboard li {
   max-width: 212px;
 }
@@ -160,9 +187,64 @@ div#display {
   display: flex;
   flex-flow: row;
   margin: 20px 0;
+  height: 40px;
+  font-size: 20pt;
+}
+div#display3 {
+  display: flex;
+  flex-flow: row;
+  margin-bottom: 20px;
 }
 div.bellnum {
   width: 100px;
   padding-left: 27px;
+}
+
+div#bells {
+  overflow: hidden;
+  width: 600px;
+  height: 500px;
+  -webkit-perspective: 400px;
+	-webkit-perspective-origin: 70% 50%;
+  position: relative;
+}
+
+div#callcontainer {
+  
+  position: absolute;
+  font-size: 20pt;
+  top: 230px;
+  width: 600px;
+  text-align: center;
+  z-index: 2;
+  transform: translateZ(-10px);
+  transition: 1s linear;
+}
+
+div.chute {
+  -webkit-transform-style: preserve-3d;
+  position: absolute;
+	margin: 10px;
+	width: 60px;
+	height: 300px;
+	-webkit-transition: 0.6s linear;
+}
+
+div.instruct {
+  position: absolute;
+  left: 0;
+  top: 200px;
+  font-size: 16pt;
+  background-color: rgba(255,255,255,0.7);
+}
+
+div.linechute {
+  display: inline-block;
+  position: relative;
+}
+
+div#display2 {
+  display: flex;
+  flex-flow: row;
 }
 
